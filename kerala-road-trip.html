@@ -1,0 +1,2221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kerala Road Trip 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;600&display=swap"
+    rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0D1117;
+      --bg2: #151B23;
+      --bg3: #1C2431;
+      --card: #1A2030;
+      --border: rgba(255, 255, 255, 0.07);
+      --orange: #E8763A;
+      --orange-dim: rgba(232, 118, 58, 0.12);
+      --teal: #2DD4A0;
+      --teal-dim: rgba(45, 212, 160, 0.1);
+      --blue: #4CA3DD;
+      --blue-dim: rgba(76, 163, 221, 0.1);
+      --amber: #F5B731;
+      --amber-dim: rgba(245, 183, 49, 0.1);
+      --text: #E8E6E0;
+      --muted: #7A8494;
+      --subtle: #3A4252;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* ══════════════════ HERO ══════════════════ */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 640px;
+      max-height: 960px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      text-align: center;
+      cursor: default;
+    }
+
+    .hero-img {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=1920&q=80');
+      background-size: cover;
+      background-position: center 55%;
+      transform: scale(1.08);
+      transition: transform 0.08s linear;
+      will-change: transform;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(4, 8, 16, 0.72) 0%, rgba(4, 8, 16, 0.45) 35%, rgba(4, 8, 16, 0.65) 70%, rgba(13, 17, 23, 1) 100%),
+        linear-gradient(120deg, rgba(232, 118, 58, 0.18) 0%, transparent 45%),
+        linear-gradient(240deg, rgba(45, 212, 160, 0.1) 0%, transparent 50%);
+    }
+
+    .hero-grain {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+      background-size: 200px;
+      opacity: 0.6;
+    }
+
+    #ptcl {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .hero-scanline {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255, 255, 255, 0.008) 2px, rgba(255, 255, 255, 0.008) 4px);
+    }
+
+    /* SPARKLE SIDE DECORATORS */
+    .sparkle-left,
+    .sparkle-right {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 5;
+      pointer-events: none;
+      opacity: 0;
+      animation: riseIn 1.2s 0.8s ease both;
+    }
+
+    .sparkle-left {
+      left: clamp(12px, 3vw, 60px);
+      animation-name: sparkleIn;
+    }
+
+    .sparkle-right {
+      right: clamp(12px, 3vw, 60px);
+      animation-name: sparkleIn;
+    }
+
+    @keyframes sparkleIn {
+      from { opacity: 0; transform: translateY(-50%) scale(0.8); }
+      to   { opacity: 1; transform: translateY(-50%) scale(1); }
+    }
+
+    /* WAVE */
+    .hero-wave {
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      right: 0;
+      height: 100px;
+      line-height: 0;
+      pointer-events: none;
+    }
+
+    .hero-wave svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* FLOAT CARD */
+    .fc {
+      position: absolute;
+      right: clamp(20px, 5vw, 90px);
+      bottom: 140px;
+      z-index: 10;
+      background: rgba(10, 16, 28, 0.72);
+      backdrop-filter: blur(18px) saturate(1.4);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 18px;
+      padding: 16px 20px;
+      width: 230px;
+      text-align: left;
+      opacity: 0;
+      animation: riseIn 0.9s 1.2s ease both;
+      transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+    }
+
+    .fc:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+      border-color: rgba(45, 212, 160, 0.25);
+    }
+
+    .fc-tag {
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 7px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .fc-tag::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--teal);
+      animation: pulse 2s ease infinite;
+    }
+
+    .fc-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 16px;
+      color: #fff;
+      font-weight: 700;
+      margin-bottom: 3px;
+    }
+
+    .fc-sub {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.4);
+      margin-bottom: 14px;
+    }
+
+    .fc-bars {
+      display: flex;
+      gap: 5px;
+    }
+
+    .fc-bar {
+      height: 3px;
+      border-radius: 2px;
+      flex: 1;
+    }
+
+    /* CONTENT */
+    .hero-content {
+      position: relative;
+      z-index: 6;
+      max-width: 780px;
+      padding: 0 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 11px;
+      letter-spacing: 3.5px;
+      text-transform: uppercase;
+      color: var(--teal);
+      font-weight: 600;
+      margin-bottom: 20px;
+      text-shadow: 0 1px 10px rgba(0,0,0,0.7);
+      opacity: 0;
+      animation: riseIn 0.8s 0.15s ease both;
+    }
+
+    .eyebrow::before,
+    .eyebrow::after {
+      content: '';
+      width: 36px;
+      height: 1px;
+      background: currentColor;
+      opacity: 0.45;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(46px, 8vw, 92px);
+      line-height: 1.04;
+      font-weight: 700;
+      margin-bottom: 16px;
+      background: linear-gradient(140deg, #ffffff 0%, #e8f4ff 40%, var(--orange) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(0 2px 24px rgba(232, 118, 58, 0.35));
+      opacity: 0;
+      animation: riseIn 0.9s 0.3s ease both;
+    }
+
+    .hero-sub {
+      font-size: 16px;
+      color: rgba(240, 238, 232, 0.88);
+      margin-bottom: 30px;
+      font-weight: 400;
+      letter-spacing: 0.6px;
+      text-shadow: 0 1px 12px rgba(0,0,0,0.8);
+      opacity: 0;
+      animation: riseIn 0.8s 0.45s ease both;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 36px;
+      opacity: 0;
+      animation: riseIn 0.8s 0.6s ease both;
+    }
+
+    .chip {
+      padding: 7px 16px;
+      border-radius: 30px;
+      font-size: 12px;
+      font-weight: 600;
+      border: 1px solid;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      backdrop-filter: blur(16px) saturate(1.6);
+      -webkit-backdrop-filter: blur(16px) saturate(1.6);
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+      cursor: default;
+      text-shadow: 0 1px 6px rgba(0,0,0,0.5);
+    }
+
+    .chip:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+    }
+
+    .co {
+      background: rgba(232, 118, 58, 0.28);
+      border-color: rgba(232, 118, 58, 0.65);
+      color: #ffb580;
+    }
+
+    .ct {
+      background: rgba(45, 212, 160, 0.22);
+      border-color: rgba(45, 212, 160, 0.6);
+      color: #7eeecb;
+    }
+
+    .cb {
+      background: rgba(76, 163, 221, 0.22);
+      border-color: rgba(76, 163, 221, 0.6);
+      color: #a0d4f5;
+    }
+
+    .ca {
+      background: rgba(245, 183, 49, 0.22);
+      border-color: rgba(245, 183, 49, 0.6);
+      color: #ffd96e;
+    }
+
+    .cp {
+      background: rgba(176, 158, 240, 0.22);
+      border-color: rgba(176, 158, 240, 0.6);
+      color: #ddd4ff;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      max-width: 580px;
+      width: 100%;
+      opacity: 0;
+      animation: riseIn 0.8s 0.75s ease both;
+    }
+
+    .sbox {
+      background: rgba(20, 30, 50, 0.55);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      border-radius: 14px;
+      padding: 18px 10px;
+      transition: all 0.25s;
+      cursor: default;
+    }
+
+    .sbox:hover {
+      border-color: rgba(232, 118, 58, 0.35);
+      transform: translateY(-4px);
+      background: rgba(30, 44, 70, 0.65);
+    }
+
+    .snum {
+      font-family: 'Playfair Display', serif;
+      font-size: 30px;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1;
+    }
+
+    .slbl {
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.38);
+      margin-top: 5px;
+    }
+
+    /* SCROLL HINT */
+    .hero-scroll {
+      position: absolute;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 7;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 7px;
+      opacity: 0;
+      animation: riseIn 0.8s 1.05s ease both;
+    }
+
+    .hero-scroll span {
+      font-size: 9px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.25);
+    }
+
+    .spill {
+      width: 20px;
+      height: 34px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding-top: 5px;
+    }
+
+    .sdot {
+      width: 4px;
+      height: 7px;
+      border-radius: 2px;
+      background: rgba(255, 255, 255, 0.45);
+      animation: sbounce 2.2s ease-in-out infinite;
+    }
+
+    @keyframes riseIn {
+      from {
+        opacity: 0;
+        transform: translateY(22px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes sbounce {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      55% {
+        transform: translateY(9px);
+      }
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 0.4;
+        transform: scale(0.7);
+      }
+    }
+
+    /* ── ROUTE STRIP ── */
+    .route-strip {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 6px;
+      padding: 16px 24px;
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .rc {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .ra {
+      color: var(--orange);
+      font-size: 11px;
+      opacity: 0.6;
+    }
+
+    /* ── NAV ── */
+    .nav-wrap {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(13, 17, 23, 0.93);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      display: flex;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .nav-inner::-webkit-scrollbar {
+      display: none;
+    }
+
+    .nav-tab {
+      flex-shrink: 0;
+      padding: 14px 22px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--muted);
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      border-top: none;
+      border-left: none;
+      border-right: none;
+      transition: all 0.2s;
+      white-space: nowrap;
+      user-select: none;
+      background: none;
+    }
+
+    .nav-tab:hover {
+      color: var(--text);
+    }
+
+    .nav-tab.active {
+      color: var(--orange);
+      border-bottom-color: var(--orange);
+    }
+
+    /* ── MAIN ── */
+    .main {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 40px 20px 80px;
+    }
+
+    .section {
+      display: none;
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    .sec-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+
+    .sec-desc {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 28px;
+    }
+
+    /* TIMELINE */
+    .day-block {
+      margin-bottom: 32px;
+    }
+
+    .day-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 16px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .day-badge {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 30px;
+    }
+
+    .b1 {
+      background: var(--blue-dim);
+      color: var(--blue);
+      border: 1px solid rgba(76, 163, 221, 0.25);
+    }
+
+    .b2 {
+      background: var(--teal-dim);
+      color: var(--teal);
+      border: 1px solid rgba(45, 212, 160, 0.25);
+    }
+
+    .b3 {
+      background: var(--orange-dim);
+      color: var(--orange);
+      border: 1px solid rgba(232, 118, 58, 0.3);
+    }
+
+    .dth {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      color: #fff;
+    }
+
+    .ddh {
+      margin-left: auto;
+      font-size: 12px;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .timeline {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .tli {
+      display: grid;
+      grid-template-columns: 80px 20px 1fr;
+      gap: 0 12px;
+      align-items: start;
+    }
+
+    .tlt {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--muted);
+      text-align: right;
+      padding-top: 14px;
+    }
+
+    .tll {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 14px;
+    }
+
+    .tld {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--bg3);
+      border: 2px solid var(--subtle);
+      flex-shrink: 0;
+      transition: border-color 0.2s;
+    }
+
+    .tli:hover .tld {
+      border-color: var(--orange);
+    }
+
+    .tlc {
+      width: 2px;
+      flex: 1;
+      min-height: 24px;
+      background: linear-gradient(var(--subtle), transparent);
+      margin-top: 4px;
+    }
+
+    .tli:last-child .tlc {
+      display: none;
+    }
+
+    .tlcard {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin-bottom: 10px;
+      transition: border-color 0.2s, transform 0.15s;
+    }
+
+    .tlcard:hover {
+      border-color: rgba(255, 255, 255, 0.14);
+      transform: translateX(2px);
+    }
+
+    .tlct {
+      font-size: 14px;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 5px;
+    }
+
+    .tlcd {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-top: 10px;
+    }
+
+    .tag {
+      font-size: 11px;
+      padding: 2px 9px;
+      border-radius: 20px;
+      background: var(--bg3);
+      color: var(--muted);
+      border: 1px solid var(--border);
+    }
+
+    .tf {
+      background: rgba(232, 118, 58, 0.1);
+      color: #E8763A;
+      border-color: rgba(232, 118, 58, 0.2);
+    }
+
+    .tp {
+      background: rgba(76, 163, 221, 0.1);
+      color: #4CA3DD;
+      border-color: rgba(76, 163, 221, 0.2);
+    }
+
+    .ts {
+      background: rgba(45, 212, 160, 0.1);
+      color: #2DD4A0;
+      border-color: rgba(45, 212, 160, 0.2);
+    }
+
+    .ta {
+      background: rgba(245, 183, 49, 0.1);
+      color: #F5B731;
+      border-color: rgba(245, 183, 49, 0.2);
+    }
+
+    .tn {
+      background: rgba(160, 130, 240, 0.1);
+      color: #B09EF0;
+      border-color: rgba(160, 130, 240, 0.2);
+    }
+
+    .alert-box {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      border-radius: 8px;
+      padding: 12px 14px;
+      margin-bottom: 16px;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .aw {
+      background: rgba(245, 183, 49, 0.1);
+      border: 1px solid rgba(245, 183, 49, 0.2);
+      color: #ddb452;
+    }
+
+    .ai {
+      background: var(--teal-dim);
+      border: 1px solid rgba(45, 212, 160, 0.2);
+      color: #59c9a5;
+    }
+
+    .aico {
+      font-size: 16px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* BUDGET */
+    .bgrid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .bcard {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px 16px;
+      transition: border-color 0.2s;
+    }
+
+    .bcard:hover {
+      border-color: rgba(255, 255, 255, 0.13);
+    }
+
+    .bcat {
+      font-size: 11px;
+      color: var(--muted);
+      margin-bottom: 6px;
+      letter-spacing: 0.5px;
+    }
+
+    .bamt {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .bnote {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 8px;
+      line-height: 1.5;
+    }
+
+    .bbar {
+      height: 3px;
+      border-radius: 2px;
+      margin-top: 12px;
+    }
+
+    .btotal {
+      background: linear-gradient(135deg, rgba(45, 212, 160, 0.12), rgba(45, 212, 160, 0.04));
+      border: 1px solid rgba(45, 212, 160, 0.25);
+      border-radius: 14px;
+      padding: 20px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .btl .lbl {
+      font-size: 13px;
+      color: var(--teal);
+      font-weight: 500;
+    }
+
+    .btl .sub {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 3px;
+    }
+
+    .btr {
+      font-family: 'Playfair Display', serif;
+      font-size: 40px;
+      font-weight: 700;
+      color: var(--teal);
+    }
+
+    .bnbox {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 14px;
+      padding: 10px 14px;
+      background: var(--bg2);
+      border-radius: 8px;
+      border-left: 3px solid var(--subtle);
+      line-height: 1.7;
+    }
+
+    /* STAY */
+    .sgrid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .scard {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.2s, transform 0.15s;
+    }
+
+    .scard:hover {
+      border-color: rgba(255, 255, 255, 0.14);
+      transform: translateY(-2px);
+    }
+
+    .sacc {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+    }
+
+    .sarea {
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .sname {
+      font-family: 'Playfair Display', serif;
+      font-size: 17px;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+
+    .sprice {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .sprice strong {
+      font-size: 20px;
+      font-weight: 700;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .sfeat {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.9;
+    }
+
+    .sfeat span {
+      display: block;
+    }
+
+    .sfeat span::before {
+      content: '·  ';
+      color: var(--subtle);
+    }
+
+    .srec {
+      margin-top: 10px;
+      font-size: 11px;
+      padding: 3px 10px;
+      border-radius: 20px;
+      display: inline-block;
+      background: var(--teal-dim);
+      color: var(--teal);
+      border: 1px solid rgba(45, 212, 160, 0.2);
+    }
+
+    /* PACKING */
+    .pgrid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .pcat {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+    }
+
+    .pctit {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 12px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .pitem {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--text);
+      padding: 4px 0;
+      cursor: pointer;
+      user-select: none;
+      transition: color 0.15s;
+    }
+
+    .pitem:hover {
+      color: #fff;
+    }
+
+    .pchk {
+      width: 16px;
+      height: 16px;
+      border-radius: 4px;
+      flex-shrink: 0;
+      border: 1.5px solid var(--subtle);
+      background: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 700;
+      color: transparent;
+      transition: all 0.15s;
+    }
+
+    .pitem.ck {
+      color: var(--muted);
+      text-decoration: line-through;
+    }
+
+    .pitem.ck .pchk {
+      background: var(--teal);
+      border-color: var(--teal);
+      color: #000;
+    }
+
+    .pctr {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    .pctr strong {
+      color: var(--teal);
+    }
+
+    /* TIPS */
+    .tgrid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .tcard {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px;
+    }
+
+    .ticon {
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+    .ttit {
+      font-size: 14px;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+
+    .titem {
+      display: flex;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.65;
+      padding: 3px 0;
+    }
+
+    .tdot {
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: var(--subtle);
+      margin-top: 10px;
+      flex-shrink: 0;
+    }
+
+    /* EXPENSE */
+    .egrid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .ecard {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px;
+    }
+
+    .etit {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--teal);
+      margin-bottom: 12px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .eitem {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.9;
+      display: flex;
+      gap: 8px;
+    }
+
+    .ebul {
+      color: var(--teal);
+      flex-shrink: 0;
+    }
+
+    .arow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .achip {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 6px 12px;
+      font-size: 12px;
+      color: var(--text);
+    }
+
+    /* FOOTER */
+    .footer {
+      text-align: center;
+      padding: 40px 24px;
+      border-top: 1px solid var(--border);
+      background: var(--bg2);
+    }
+
+    .footer p {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .footer strong {
+      color: var(--orange);
+    }
+
+    /* RESPONSIVE */
+    @media(max-width:700px) {
+      .stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .bgrid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .sgrid {
+        grid-template-columns: 1fr;
+      }
+
+      .pgrid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .tgrid {
+        grid-template-columns: 1fr;
+      }
+
+      .egrid {
+        grid-template-columns: 1fr;
+      }
+
+      .tli {
+        grid-template-columns: 60px 16px 1fr;
+      }
+
+      .fc {
+        display: none;
+      }
+    }
+
+    @media(max-width:480px) {
+      .bgrid {
+        grid-template-columns: 1fr;
+      }
+
+      .pgrid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1 {
+        font-size: 38px;
+      }
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(14px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .section.active>* {
+      animation: fadeUp 0.35s ease both;
+    }
+
+    .section.active>*:nth-child(2) {
+      animation-delay: .05s;
+    }
+
+    .section.active>*:nth-child(3) {
+      animation-delay: .1s;
+    }
+
+    .section.active>*:nth-child(4) {
+      animation-delay: .15s;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ═══ HERO ═══ -->
+  <section class="hero" id="hero">
+    <div class="hero-img" id="himg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-grain"></div>
+    <canvas id="ptcl"></canvas>
+    <div class="hero-scanline"></div>
+
+    <!-- Sparkle decorators left & right -->
+    <div class="sparkle-left" aria-hidden="true">
+      <svg width="120" height="320" viewBox="0 0 120 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g opacity="0.7">
+          <path d="M60 10 L63 22 L75 22 L65 30 L68 42 L60 34 L52 42 L55 30 L45 22 L57 22 Z" fill="#2DD4A0" opacity="0.9"/>
+          <circle cx="20" cy="80" r="3" fill="#E8763A" opacity="0.8"/>
+          <path d="M95 110 L97 117 L104 117 L98 121 L100 128 L95 124 L90 128 L92 121 L86 117 L93 117 Z" fill="#F5B731" opacity="0.85"/>
+          <circle cx="30" cy="170" r="2" fill="#2DD4A0" opacity="0.6"/>
+          <circle cx="90" cy="200" r="4" fill="#fff" opacity="0.25"/>
+          <path d="M15 240 L17 247 L24 247 L18 251 L20 258 L15 254 L10 258 L12 251 L6 247 L13 247 Z" fill="#4CA3DD" opacity="0.8"/>
+          <circle cx="75" cy="280" r="2.5" fill="#E8763A" opacity="0.5"/>
+          <circle cx="40" cy="310" r="1.5" fill="#fff" opacity="0.3"/>
+        </g>
+      </svg>
+    </div>
+    <div class="sparkle-right" aria-hidden="true">
+      <svg width="120" height="320" viewBox="0 0 120 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g opacity="0.7">
+          <path d="M60 10 L63 22 L75 22 L65 30 L68 42 L60 34 L52 42 L55 30 L45 22 L57 22 Z" fill="#E8763A" opacity="0.9"/>
+          <circle cx="100" cy="80" r="3" fill="#2DD4A0" opacity="0.8"/>
+          <path d="M25 110 L27 117 L34 117 L28 121 L30 128 L25 124 L20 128 L22 121 L16 117 L23 117 Z" fill="#4CA3DD" opacity="0.85"/>
+          <circle cx="90" cy="170" r="2" fill="#F5B731" opacity="0.6"/>
+          <circle cx="30" cy="200" r="4" fill="#fff" opacity="0.25"/>
+          <path d="M105 240 L107 247 L114 247 L108 251 L110 258 L105 254 L100 258 L102 251 L96 247 L103 247 Z" fill="#2DD4A0" opacity="0.8"/>
+          <circle cx="45" cy="280" r="2.5" fill="#E8763A" opacity="0.5"/>
+          <circle cx="80" cy="310" r="1.5" fill="#fff" opacity="0.3"/>
+        </g>
+      </svg>
+    </div>
+
+    <!-- Main content -->
+    <div class="hero-content">
+      <div class="eyebrow">Kerala Road Trip 2026</div>
+      <h1>Chasing Waves<br>&amp; Cliff Sunsets</h1>
+      <p class="hero-sub">May 1 &ndash; May 4 &nbsp;&middot;&nbsp; 10 Friends &nbsp;&middot;&nbsp; 2 Cars
+        &nbsp;&middot;&nbsp; 3 Nights</p>
+      <div class="chips">
+        <span class="chip ct">&#127944; Beaches</span>
+        <span class="chip co">&#9968; Ghat Roads</span>
+        <span class="chip cb">&#127808; Tea Estates</span>
+        <span class="chip ca">&#128692; Backwaters</span>
+        <span class="chip cp">&#127762; Nightlife</span>
+        <span class="chip co">&#127843; Seafood</span>
+        <span class="chip ct">&#9749; Cliff Cafes</span>
+      </div>
+      <div class="stats">
+        <div class="sbox">
+          <div class="snum" id="s0">0</div>
+          <div class="slbl">Nights</div>
+        </div>
+        <div class="sbox">
+          <div class="snum" id="s1">0</div>
+          <div class="slbl">KM Total</div>
+        </div>
+        <div class="sbox">
+          <div class="snum" id="s2">&#8377;6K</div>
+          <div class="slbl">Per Person</div>
+        </div>
+        <div class="sbox">
+          <div class="snum" id="s3">0</div>
+          <div class="slbl">Destinations</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll hint -->
+    <div class="hero-scroll">
+      <span>Scroll</span>
+      <div class="spill">
+        <div class="sdot"></div>
+      </div>
+    </div>
+
+    <!-- Animated wave -->
+    <div class="hero-wave">
+      <svg viewBox="0 0 1440 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path id="wv1" fill="#0D1117" d="M0,50 C240,85 480,15 720,50 C960,85 1200,15 1440,50 L1440,100 L0,100 Z" />
+        <path id="wv2" fill="#151B23" opacity="0.5"
+          d="M0,65 C200,30 450,75 700,55 C950,35 1200,70 1440,55 L1440,100 L0,100 Z" />
+      </svg>
+    </div>
+  </section>
+
+  <!-- ROUTE -->
+  <div class="route-strip">
+    <span class="rc">Kozhikode</span><span class="ra">&rarr;</span>
+    <span class="rc">Thrissur</span><span class="ra">&rarr;</span>
+    <span class="rc">Munnar</span><span class="ra">&rarr;</span>
+    <span class="rc">Kollam</span><span class="ra">&rarr;</span>
+    <span class="rc">Varkala</span><span class="ra">&rarr;</span>
+    <span class="rc">Bangalore</span>
+  </div>
+
+  <!-- NAV -->
+  <div class="nav-wrap">
+    <div class="nav-inner">
+      <button class="nav-tab active" onclick="switchTab('itinerary',this)">&#128506; Itinerary</button>
+      <button class="nav-tab" onclick="switchTab('budget',this)">&#128176; Budget</button>
+      <button class="nav-tab" onclick="switchTab('stay',this)">&#127968; Stay</button>
+      <button class="nav-tab" onclick="switchTab('packing',this)">&#127876; Packing</button>
+      <button class="nav-tab" onclick="switchTab('tips',this)">&#9889; Tips</button>
+      <button class="nav-tab" onclick="switchTab('expense',this)">&#128202; Expenses</button>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <div class="main">
+
+    <!-- ITINERARY -->
+    <div id="tab-itinerary" class="section active">
+      <div class="sec-title">Day-by-Day Plan</div>
+      <p class="sec-desc">Relaxed, scenic and experience-first. Not a temple run — a proper youth road trip.</p>
+
+      <div class="day-block">
+        <div class="day-header">
+          <span class="day-badge b1">Day 1</span>
+          <span class="dth">Kozhikode &rarr; Thrissur</span>
+          <span class="ddh">May 1 &middot; Thursday</span>
+        </div>
+        <div class="alert-box aw"><span class="aico">&#9888;</span><span>You've just arrived from an overnight drive.
+            Take a short rest before exploring. Don't rush — morning at Kozhikode beach is worth the slow start.</span>
+        </div>
+        <div class="timeline">
+          <div class="tli">
+            <div class="tlt">7:30 AM</div>
+            <div class="tll">
+              <div class="tld"></div>
+              <div class="tlc"></div>
+            </div>
+            <div class="tlcard">
+              <div class="tlct">Kozhikode Beach — Morning Walk</div>
+              <div class="tlcd">Fresh sea air, golden light. Walk the promenade. Try puttu + kadala or appam from a
+                nearby stall. Low crowd, chill vibe. Group photos on wet sand.</div>
+              <div class="tags"><span class="tag tp">&#128247; Photo Stop</span><span class="tag tf">&#127859;
+                  Breakfast</span></div>
+            </div>
+          </div>
+          <div class="tli">
+            <div class="tlt">9:00 AM</div>
+            <div class="tll">
+              <div class="tld"></div>
+              <div class="tlc"></div>
+            </div>
+            <div class="tlcard">
+              <div class="tlct">SM Street (Mithai Theruvu)</div>
+              <div class="tlcd">Kerala's most iconic food street. Try Kozhikodan halwa (the real stuff), banana chips,
+                biryani, and sweet shops. Buy packed halwa as gift for family — ₹80–120 box. Budget ₹100–150/person
+                here.</div>
+              <div class="tags"><span class="tag tf">&#127841; Street Food</span><span class="tag">Must Stop</span>
+              </div>
+            </div>
+          </div>
+          <div class="tli">
+            <div class="tlt">11:00 AM</div>
+            <div class="tll">
+              <div class="tld"></div>
+              <div class="tlc"></div>
+            </div>
+            <div class="tlcard">
+              <div class="tlct">Kappad Beach</div>
+              <div class="tlcd">18 km from city. Historic beach where Vasco da Gama first landed in India (1498).
+                Low-crowd, rocky, scenic. A memorial stone marks the spot. Great for creative photos. Less touristy than
+                city beach.</div>
+              <div class="tags"><span class="tag tp">&#128247; Photo Stop</span><span class="tag ts">&#127754;
+                  Scenic</span></div>
+            </div>
+          </div>
+          <div class="tli">
+            <div class="tlt">1:00 PM</div>
+            <div class="tll">
+              <div class="tld"></div>
+              <div class="tlc"></div>
+            </div>
+            <div class="tlcard">
+              <div class="tlct">Beypore Port + Lunch</div>
+              <div class="tlcd">Ancient port with massive wooden dhow boats (urus) hand-built by local craftsmen. Walk
+                the port, see the boats up close. Eat at a local fish restaurant nearby — fresh catch, Kerala style.
+                ₹150–200/person.</div>
+              <div class="tags"><span class="tag tf">&#128031; Seafood Lunch</span><span class="tag ts">&#9875; Heritage
+                  Port</span></div>
+            </div>
+          </div>
+          <div class="tli">
+            <div class="tlt">3:00 PM</div>
+            <div class="tll">
+              <div class="tld"></div>
+              <div class="tlc"></div>
+            </div>
+            <div class="tlcard">
+              <div class="tlct">Drive to Thrissur via NH 66</div>
+              <div class="tlcd">~90 km. Coastal highway — pleasant and fast. 2 hours with one chai stop around
+                Guruvayur. Put on the trip playlist, windows down, cruise vibes.</div>
+              <div class="tags"><span class="tag ts">&#128739; Coastal Highway</span><span class="tag">~2 hrs</span>
+              </div>
+            </div>
+          </div>
+          <div class="tli">
+            <div class="tlt">5:30 PM</div>
+            <div class="tll">
+              <div class="tld"></div>
+              <div class="tlc"></div>
+            </div>
+            <div class="tlcard">
+              <div class="tlct">Thrissur Round — Evening Vibe</div>
+              <div class="tlcd">The famous circular road around Vadakkunnathan Temple. Walk the round, grab chai,
+                explore local cafes and street food. Try Kerala parotta + beef curry at any local joint (₹80–120).
+                Evening crowd is great here.</div>
+              <div class="tags"><span class="tag tf">&#127869; Dinner</span><span class="tag tn">&#127762; Night
+                  Vibe</span></div>
+            </div>
+          </div>
+          <div class="tli">
+            <div class="tlt">9:00 PM</div>
+            <div class="tll">
+              <div class="tld"></div>
+              <div class="tlc"></div>
+            </div>
+            <div class="tlcard">
+              <div class="tlct">Check In — Thrissur Stay</div>
+              <div class="tlcd">Budget lodge near Thrissur Round. ₹1,500–2,000 total for 10 people sharing rooms. Sleep
+                early — tomorrow is the biggest and most scenic day. 5:30 AM departure needed.</div>
+              <div class="tags"><span class="tag">&#127968; Stay Night</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="day-block">
+        <div class="day-header">
+          <span class="day-badge b2">Day 2</span>
+          <span class="dth">Thrissur &rarr; Munnar &rarr; Kollam &rarr; Varkala</span>
+          <span class="ddh">May 2 &middot; Friday</span>
+        </div>
+        <div class="alert-box ai"><span class="aico">&#11088;</span><span>The most cinematic day — ghats, tea estates,
+            backwaters, and coastal roads all in one. Early 5:30 AM start is non-negotiable to make the most of Munnar
+            and catch Kappil at sunset.</span></div>
+        <div class="timeline">
+          <div class="tli">
+            <div class="tlt">5:30 AM</div>
+            <div class="tll">
+              <div class="tld"></div>
+              <div class="tlc"></div>
+            </div>
+            <div class="tlcard">
+              <div class="tlct">Depart Thrissur for Munnar</div>
+              <div class="tlcd">~120 km via Chalakudy → Neriamangalam → Munnar Ghat Road. 3–3.5 hrs. You'll enter mist
+                and tea estate country by 7:30 AM — pure magic. Have quick tea from car flask before leaving.</div>
+              <div class="tags"><span class="tag ts">&#9968; Ghat Drive</span><span class="tag">~3.5 hrs</span></div>
+            </div>
+          </div>
+          <div class="tli">
+            <div class="tlt">8:30 AM</div>
+            <div class="tll">
+              <div class="tld"></div>
+              <div class="tlc"></div>
+            </div>
+            <div class="tlcard">
+              <div class="tlct">Breakfast in the Tea Estates</div>
+              <div class="tlcd">Pull over at a roadside stall surrounded by tea carpets. Kerala tea + pazhampori (banana
+                fritters) + boiled eggs. The golden light through the mist at this hour is something else.</div>
+              <div class="tags"><span class="tag tf">&#9749; Breakfast</span><span class="tag tp">&#128247; Golden
+                  Hour</span></div>
+            </div>
+          </div>
+          <div class="tli">
+            <div class="tlt">9:30 AM</div>
+            <div class="tll">
+              <div class="tld"></div>
+              <div class="tlc"></div>
+            </div>
+            <div class="tlcard">
+              <div class="tlct">Gap Road + Photo Point — Munnar Hairpins</div>
+              <div class="tlcd">The iconic stretch. Layer after layer of green tea carpets sweeping down hairpin bends.
+                Park the cars, walk up the road. Take unlimited time here — this is the postcard shot of the trip.</div>
+              <div class="tags"><span class="tag tp">&#128247; Iconic Shot</span><span class="tag ts">&#127808; Tea
+                  Estates</span></div>
+            </div>
+          </div>
+          <div class="tli">
+            <div class="tlt">10:30 AM</div>
+            <div class="tll">
+              <div class="tld"></div>
+              <div class="tlc"></div>
+            </div>
+            <div class="tlcard">
+              <div class="tlct">Mattupetty Dam + Echo Point</div>
+              <div class="tlcd">15 km stretch from town. Calm lake, rolling hills, a few boats. Echo Point is fun —
+                shout your name and hear it come back. 45 mins combined for both spots. Quick but satisfying.</div>
+              <div class="tags"><span class="tag ts">&#127754; Lake Views</span><span class="tag ta">&#128226; Echo
+                  Point</span></div>
+            </div>
+          </div>
+          <div class="tli">
+            <div class="tlt">12:00 PM</div>
+            <div class="tll">
+              <div class="tld"></div>
+              <div class="tlc"></div>
+            </div>
+            <div class="tlcard">
+              <div class="tlct">Munnar Town — Lunch + Tea Museum</div>
+              <div class="tlcd">Kerala rice meals at a local restaurant (₹130–160). KDHP Tea Museum ₹75/person — 45
+                mins, teaches you about tea processing. Buy loose Munnar tea to take home (₹80–150 for 250g).</div>
+              <div class="tags"><span class="tag tf">&#127859; Lunch</span><span class="tag">&#129381; Tea Museum
+                  ₹75</span></div>
+            </div>
+          </div>
+          <div class="tli">
+            <div class="tlt">1:30 PM</div>
+            <div class="tll">
+              <div class="tld"></div>
+              <div class="tlc"></div>
+            </div>
+            <div class="tlcard">
+              <div class="tlct">Drive: Munnar &rarr; Kollam</div>
+              <div class="tlcd">~210 km via Kothamangalam → Ernakulam Bypass → NH 66 → Kollam. ~4 hrs including a quick
+                tea break. Transition from hill country to coast. Car playlist moment.</div>
+              <div class="tags"><span class="tag">&#128739; ~4 hrs drive</span><span class="tag ts">Hills &rarr;
+                  Coast</span></div>
+            </div>
+          </div>
+          <div class="tli">
+            <div class="tlt">5:00 PM</div>
+            <div class="tll">
+              <div class="tld"></div>
+              <div class="tlc"></div>
+            </div>
+            <div class="tlcard">
+              <div class="tlct">Kappil Beach Road — Sunset Drive &#127749;</div>
+              <div class="tlcd">The trip highlight moment. A narrow strip of land with the Arabian Sea on the left and
+                Ashtamudi Lake backwaters on the right. Walk the road, stand between two bodies of water. Insane sunset.
+                Pull the cars over and just be there.</div>
+              <div class="tags"><span class="tag tp">&#128247; Best Photo Stop</span><span class="tag ts">&#127749;
+                  Sunset Point</span></div>
+            </div>
+          </div>
+          <div class="tli">
+            <div class="tlt">6:00 PM</div>
+            <div class="tll">
+              <div class="tld"></div>
+              <div class="tlc"></div>
+            </div>
+            <div class="tlcard">
+              <div class="tlct">Ashtamudi Lake Backwaters — Quick Stop</div>
+              <div class="tlcd">Park roadside and walk to the lake. Houseboat silhouettes, calm water, Kerala evening
+                light. 20 minutes max — just soak it in before pushing to Varkala.</div>
+              <div class="tags"><span class="tag ts">&#127807; Backwaters</span></div>
+            </div>
+          </div>
+          <div class="tli">
+            <div class="tlt">8:00 PM</div>
+            <div class="tll">
+              <div class="tld"></div>
+              <div class="tlc"></div>
+            </div>
+            <div class="tlcard">
+              <div class="tlct">Arrive Varkala — Cliff Check-In + First Night</div>
+              <div class="tlcd">Check in, freshen up. Head straight to Varkala Cliff for the first night. Grab dinner at
+                a cliff café (₹200–300/person). Walk the cliff promenade. Sea sound below, music, fairy lights above.
+                Welcome to Varkala.</div>
+              <div class="tags"><span class="tag tf">&#127869; Cliff Dinner</span><span class="tag tn">&#127762; Cliff
+                  Night</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="day-block">
+        <div class="day-header">
+          <span class="day-badge b3">Day 3</span>
+          <span class="dth">Full Day Varkala + Return Night</span>
+          <span class="ddh">May 3 &middot; Saturday</span>
+        </div>
+        <div class="timeline">
+          <div class="tli">
+            <div class="tlt">6:00 AM</div>
+            <div class="tll">
+              <div class="tld"></div>
+              <div class="tlc"></div>
+            </div>
+            <div class="tlcard">
+              <div class="tlct">Sunrise — Varkala Beach Walk</div>
+              <div class="tlcd">Walk down the cliff steps to the beach. Minimal crowd, cool breeze, golden light across
+                the waves. Group walk on wet sand. The kind of moment you remember 10 years later.</div>
+              <div class="tags"><span class="tag tp">&#127749; Sunrise</span><span class="tag ts">&#127754; Beach</span>
+              </div>
+            </div>
+          </div>
+          <div class="tli">
+            <div class="tlt">8:00 AM</div>
+            <div class="tll">
+              <div class="tld"></div>
+              <div class="tlc"></div>
+            </div>
+            <div class="tlcard">
+              <div class="tlct">Cliff Breakfast + Cafe Hopping</div>
+              <div class="tlcd">Try Abba Café, Café del Mar, or The Black Sand Coffee. Full Kerala breakfast or eggs +
+                toast. Sit on cliff-edge seats with sea view. Take your time — no rush today. Budget ₹180–250/person.
+              </div>
+              <div class="tags"><span class="tag tf">&#9749; Cliff Café</span><span class="tag tp">&#128444;
+                  Views</span></div>
+            </div>
+          </div>
+          <div class="tli">
+            <div class="tlt">10:00 AM</div>
+            <div class="tll">
+              <div class="tld"></div>
+              <div class="tlc"></div>
+            </div>
+            <div class="tlcard">
+              <div class="tlct">Bike Rental + Kappil Beach Ride</div>
+              <div class="tlcd">Rent 5 bikes (₹300–400/day each). Ride 6 km to Kappil Beach — the narrow backwater
+                bridge strip. Swim, sit, hang. No crowd. Black sand, calm backwater, coconut trees. Most chill spot of
+                the trip.</div>
+              <div class="tags"><span class="tag ta">&#128692; Bike Ride</span><span class="tag ts">&#127958; Kappil
+                  Beach</span></div>
+            </div>
+          </div>
+          <div class="tli">
+            <div class="tlt">12:30 PM</div>
+            <div class="tll">
+              <div class="tld"></div>
+              <div class="tlc"></div>
+            </div>
+            <div class="tlcard">
+              <div class="tlct">Anjengo Fort</div>
+              <div class="tlcd">18 km from Varkala (30 min ride). British colonial fort with lighthouse and unobstructed
+                ocean views. Very few tourists. Walk the fort walls, see the old cemetery, lighthouse views. 45–60 mins.
+                Worth it.</div>
+              <div class="tags"><span class="tag">&#127984; Fort</span><span class="tag tp">&#128247; Lighthouse
+                  Views</span></div>
+            </div>
+          </div>
+          <div class="tli">
+            <div class="tlt">2:30 PM</div>
+            <div class="tll">
+              <div class="tld"></div>
+              <div class="tlc"></div>
+            </div>
+            <div class="tlcard">
+              <div class="tlct">Odayam Black Sand Beach — Photoshoot</div>
+              <div class="tlcd">Rare black volcanic sand 5 min from main beach. Unique backdrop for photos. Quiet, no
+                hawkers. Creative shots possible — silhouettes, close-up sand, wide ocean. Unusual and different from
+                regular beach photos.</div>
+              <div class="tags"><span class="tag tp">&#128247; Black Sand</span><span class="tag ts">Unique Spot</span>
+              </div>
+            </div>
+          </div>
+          <div class="tli">
+            <div class="tlt">4:00 PM</div>
+            <div class="tll">
+              <div class="tld"></div>
+              <div class="tlc"></div>
+            </div>
+            <div class="tlcard">
+              <div class="tlct">Varkala Beach — Swim + Water Activities</div>
+              <div class="tlcd">Back to main beach for swimming. Note: strong undercurrents near cliff — swim only in
+                marked zones. Activity options: Parasailing ₹800–1,200 · Surfing lessons ₹600–900 · Kayaking ₹400. Pick
+                one per person based on budget.</div>
+              <div class="tags"><span class="tag ta">&#127940; Surf/Para</span><span class="tag ts">&#127754;
+                  Swimming</span></div>
+            </div>
+          </div>
+          <div class="tli">
+            <div class="tlt">6:00 PM</div>
+            <div class="tll">
+              <div class="tld"></div>
+              <div class="tlc"></div>
+            </div>
+            <div class="tlcard">
+              <div class="tlct">Cliff Sunset + Shopping Walk &#127749;</div>
+              <div class="tlcd">Best sunset view from the cliff edge. The sea turns gold then crimson. After sunset,
+                browse the cliff shops — jewelry, beach shorts, Kashmiri crafts. Start at 40% of asking price when
+                bargaining. Don't overspend.</div>
+              <div class="tags"><span class="tag tp">&#127749; Best Sunset</span><span class="tag">&#128717;
+                  Shopping</span></div>
+            </div>
+          </div>
+          <div class="tli">
+            <div class="tlt">8:00 PM</div>
+            <div class="tll">
+              <div class="tld"></div>
+              <div class="tlc"></div>
+            </div>
+            <div class="tlcard">
+              <div class="tlct">Seafood Dinner — The Main Event &#129408;</div>
+              <div class="tlcd">Order Kerala fish curry, grilled grouper, tiger prawns, crab masala. Budget
+                ₹250–350/person at mid-range cliff spots. Pro tip: Order Kerala fish thali for best value (₹200–250).
+                Eat slow. Enjoy the sound of waves below.</div>
+              <div class="tags"><span class="tag tf">&#129426; Seafood</span><span class="tag tn">&#127762; Cliff
+                  Vibes</span></div>
+            </div>
+          </div>
+          <div class="tli">
+            <div class="tlt">10:00 PM</div>
+            <div class="tll">
+              <div class="tld"></div>
+              <div class="tlc"></div>
+            </div>
+            <div class="tlcard">
+              <div class="tlct">Group Rooftop Hangout — Cards + Music</div>
+              <div class="tlcd">Back at stay. Rooftop session with Bluetooth speaker, card games, trip recap. The moment
+                you'll all talk about for years. Keep it till midnight then pack up bags for return.</div>
+              <div class="tags"><span class="tag tn">&#127924; Cards Night</span><span class="tag tn">&#127925;
+                  Music</span></div>
+            </div>
+          </div>
+          <div class="tli">
+            <div class="tlt">1:00 AM</div>
+            <div class="tll">
+              <div class="tld"></div>
+              <div class="tlc"></div>
+            </div>
+            <div class="tlcard">
+              <div class="tlct">Return Drive — Varkala to Bangalore</div>
+              <div class="tlcd">~680 km via Thiruvananthapuram → Nagercoil → NH 44 → Bangalore. 10–11 hours. Stop at
+                Madurai (~5 AM) for chai + parota breakfast. Reach Bangalore by 11 AM–12 PM on May 4.</div>
+              <div class="tags"><span class="tag">&#128663; Return Night Drive</span><span class="tag">~10 hrs</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BUDGET -->
+    <div id="tab-budget" class="section">
+      <div class="sec-title">Budget Breakdown</div>
+      <p class="sec-desc">Per person estimate — ₹6,000 total target. Slightly flexible.</p>
+      <div class="bgrid">
+        <div class="bcard">
+          <div class="bcat">FUEL &middot; BOTH CARS SPLIT EQUALLY</div>
+          <div class="bamt" style="color:var(--orange)">&#8377;2,700</div>
+          <div class="bbar" style="background:linear-gradient(90deg,var(--orange),transparent);width:90%"></div>
+          <div class="bnote">~1200 km total &times; 2 cars &middot; avg 13 km/l &middot; ₹105/l = ₹19,600 total &divide;
+            10 persons. Largest expense — split equally regardless of car.</div>
+        </div>
+        <div class="bcard">
+          <div class="bcat">STAY &middot; THRISSUR + 3 NIGHTS VARKALA</div>
+          <div class="bamt" style="color:var(--blue)">&#8377;1,200</div>
+          <div class="bbar" style="background:linear-gradient(90deg,var(--blue),transparent);width:40%"></div>
+          <div class="bnote">Thrissur 1 night shared ~₹200/pp. Varkala: Boys dorm ₹380 &times; 3 nights. Girls pvt room
+            ₹1,200 &times; 3 &divide; 2. Total ~₹12,000 &divide; 10.</div>
+        </div>
+        <div class="bcard">
+          <div class="bcat">FOOD &middot; ALL 4 DAYS</div>
+          <div class="bamt" style="color:var(--teal)">&#8377;1,100</div>
+          <div class="bbar" style="background:linear-gradient(90deg,var(--teal),transparent);width:37%"></div>
+          <div class="bnote">~₹280/day. Kerala thalis, street food at SM Street, cafe breakfasts, seafood dinner. No
+            fine dining.</div>
+        </div>
+        <div class="bcard">
+          <div class="bcat">BIKES + WATER ACTIVITY</div>
+          <div class="bamt" style="color:var(--amber)">&#8377;450</div>
+          <div class="bbar" style="background:linear-gradient(90deg,var(--amber),transparent);width:15%"></div>
+          <div class="bnote">Bike rental ₹400/day &times; 5 bikes &divide; 10 = ₹200. One water activity
+            (surf/para/kayak) per person = ~₹250 avg.</div>
+        </div>
+        <div class="bcard">
+          <div class="bcat">TOLLS + PARKING</div>
+          <div class="bamt" style="color:var(--muted)">&#8377;250</div>
+          <div class="bbar" style="background:linear-gradient(90deg,rgba(122,132,148,0.6),transparent);width:8%"></div>
+          <div class="bnote">FastTag tolls ~₹2,000/car = ₹4,000 total &divide; 10. Varkala parking ₹50–100/day.</div>
+        </div>
+        <div class="bcard">
+          <div class="bcat">ENTRY FEES + MISC</div>
+          <div class="bamt" style="color:var(--muted)">&#8377;200</div>
+          <div class="bbar" style="background:linear-gradient(90deg,rgba(122,132,148,0.6),transparent);width:7%"></div>
+          <div class="bnote">Munnar Tea Museum ₹75. Minor entry fees, cliff shopping buffer. Tea + snacks on road.</div>
+        </div>
+      </div>
+      <div class="btotal">
+        <div class="btl">
+          <div class="lbl">Total Estimated Per Person</div>
+          <div class="sub">₹100 buffer included &middot; Activities optional</div>
+        </div>
+        <div class="btr">&#8377;5,900</div>
+      </div>
+      <div class="bnbox">&#128161; <strong>Collect ₹5,500/person before leaving.</strong> Keep ₹500/person as emergency
+        buffer. Collect from everyone at one go — don't chase during trip. One person holds the cash pool. Use Splitwise
+        for all logging. Fuel bills settled as a whole at the end — everyone pays equal share of total fuel (both cars
+        combined).</div>
+    </div>
+
+    <!-- STAY -->
+    <div id="tab-stay" class="section">
+      <div class="sec-title">Stay in Varkala</div>
+      <p class="sec-desc">3 nights &middot; 8 boys (dorm/large room) + 2 girls (separate private room). Budget
+        ₹3,500–4,500/night total.</p>
+      <div class="sgrid">
+        <div class="scard">
+          <div class="sacc" style="background:linear-gradient(90deg,var(--teal),transparent)"></div>
+          <div class="sarea">Cliff Area &middot; Best Location</div>
+          <div class="sname">Zostel Varkala</div>
+          <div class="sprice"><strong style="color:var(--teal)">&#8377;350–400</strong> /person/night (dorm)</div>
+          <div class="sfeat"><span>Walk to cliff cafes and sunset point</span><span>Social backpacker
+              vibe</span><span>Clean 6/8-bed dorms for boys</span><span>Private rooms available for
+              girls</span><span>Rooftop area for group hangouts</span></div>
+          <div class="srec">&#11088; Top Pick for Boys</div>
+        </div>
+        <div class="scard">
+          <div class="sacc" style="background:linear-gradient(90deg,var(--blue),transparent)"></div>
+          <div class="sarea">Helipad Area &middot; 5 min to Cliff</div>
+          <div class="sname">Varkala Backpacker's Hostel</div>
+          <div class="sprice"><strong style="color:var(--blue)">&#8377;300–380</strong> /person/night (dorm)</div>
+          <div class="sfeat"><span>5 min walk to cliff promenade</span><span>Budget-friendly with group
+              rooms</span><span>Rooftop chill space</span><span>Mixed dorm options</span><span>Beach access route
+              nearby</span></div>
+        </div>
+        <div class="scard">
+          <div class="sacc" style="background:linear-gradient(90deg,var(--orange),transparent)"></div>
+          <div class="sarea">Odayam Beach &middot; Girls' Option</div>
+          <div class="sname">Local Cliff Homestays</div>
+          <div class="sprice"><strong style="color:var(--orange)">&#8377;1,200–1,800</strong> /night (whole room)</div>
+          <div class="sfeat"><span>More private and secure</span><span>Kerala family-run stay</span><span>Quieter, less
+              touristy area</span><span>10 min drive to main cliff</span><span>Ideal for 2-person private room</span>
+          </div>
+          <div class="srec">&#11088; Top Pick for Girls</div>
+        </div>
+      </div>
+      <div class="alert-box aw" style="margin-top:18px"><span class="aico">&#128205;</span><span><strong>Book NOW before
+            you leave Bangalore.</strong> Zostel and cliff hostels fill up fast — especially for weekends in May. Book
+          on Zostel.com or Hostelworld directly. For girls' room, check Booking.com filtering for Varkala Cliff /
+          Helipad area. Call and confirm — Kerala mobile reception is spotty.</span></div>
+      <div class="bnbox" style="margin-top:14px">&#128176; Recommended split: Boys in Zostel dorm ₹380 &times; 8 persons
+        &times; 3 nights = ₹9,120. Girls in cliff homestay ₹1,200/night &times; 3 = ₹3,600. Total stay = ₹12,720
+        &divide; 10 = <strong>₹1,272/person</strong>. Thrissur 1 night: ~₹2,000 total for 10 pax sharing = ₹200/person.
+      </div>
+    </div>
+
+    <!-- PACKING -->
+    <div id="tab-packing" class="section">
+      <div class="sec-title">Packing List</div>
+      <p class="sec-desc">Tap items to check them off as you pack.</p>
+      <p class="pctr" id="pctr">Loading...</p>
+      <div class="pgrid">
+        <div class="pcat">
+          <div class="pctit">&#128085; Clothes</div>
+          <div class="pitem" onclick="tp(this)">
+            <div class="pchk">&#10003;</div>3–4 t-shirts
+          </div>
+          <div class="pitem" onclick="tp(this)">
+            <div class="pchk">&#10003;</div>2 shorts + 1 track pant
+          </div>
+          <div class="pitem" onclick="tp(this)">
+            <div class="pchk">&#10003;</div>Swimwear (essential!)
+          </div>
+          <div class="pitem" onclick="tp(this)">
+            <div class="pchk">&#10003;</div>1 full-sleeve shirt
+          </div>
+          <div class="pitem" onclick="tp(this)">
+            <div class="pchk">&#10003;</div>Light rain jacket
+          </div>
+          <div class="pitem" onclick="tp(this)">
+            <div class="pchk">&#10003;</div>Flip flops + sneakers
+          </div>
+          <div class="pitem" onclick="tp(this)">
+            <div class="pchk">&#10003;</div>Microfiber towel
+          </div>
+          <div class="pitem" onclick="tp(this)">
+            <div class="pchk">&#10003;</div>Undergarments &times; 4
+          </div>
+        </div>
+        <div class="pcat">
+          <div class="pctit">&#127958; Beach + Outdoor</div>
+          <div class="pitem" onclick="tp(this)">
+            <div class="pchk">&#10003;</div>Sunscreen SPF 50+
+          </div>
+          <div class="pitem" onclick="tp(this)">
+            <div class="pchk">&#10003;</div>Sunglasses + cap
+          </div>
+          <div class="pitem" onclick="tp(this)">
+            <div class="pchk">&#10003;</div>Waterproof phone pouch
+          </div>
+          <div class="pitem" onclick="tp(this)">
+            <div class="pchk">&#10003;</div>Dry bag / zip locks
+          </div>
+          <div class="pitem" onclick="tp(this)">
+            <div class="pchk">&#10003;</div>Refillable water bottle
+          </div>
+          <div class="pitem" onclick="tp(this)">
+            <div class="pchk">&#10003;</div>Mosquito repellent
+          </div>
+          <div class="pitem" onclick="tp(this)">
+            <div class="pchk">&#10003;</div>After-sun lotion
+          </div>
+        </div>
+        <div class="pcat">
+          <div class="pctit">&#128663; Car Essentials</div>
+          <div class="pitem" onclick="tp(this)">
+            <div class="pchk">&#10003;</div>Car charger + USB hub
+          </div>
+          <div class="pitem" onclick="tp(this)">
+            <div class="pchk">&#10003;</div>Offline Google Maps saved
+          </div>
+          <div class="pitem" onclick="tp(this)">
+            <div class="pchk">&#10003;</div>Tyre inflator (portable)
+          </div>
+          <div class="pitem" onclick="tp(this)">
+            <div class="pchk">&#10003;</div>Torch / headlamp
+          </div>
+          <div class="pitem" onclick="tp(this)">
+            <div class="pchk">&#10003;</div>Snacks + dry fruits box
+          </div>
+          <div class="pitem" onclick="tp(this)">
+            <div class="pchk">&#10003;</div>Flask for tea/coffee
+          </div>
+        </div>
+        <div class="pcat">
+          <div class="pctit">&#128196; Documents</div>
+          <div class="pitem" onclick="tp(this)">
+            <div class="pchk">&#10003;</div>Driving license (original)
+          </div>
+          <div class="pitem" onclick="tp(this)">
+            <div class="pchk">&#10003;</div>RC book + insurance
+          </div>
+          <div class="pitem" onclick="tp(this)">
+            <div class="pchk">&#10003;</div>Aadhar card (all 10)
+          </div>
+          <div class="pitem" onclick="tp(this)">
+            <div class="pchk">&#10003;</div>Hotel booking screenshots
+          </div>
+          <div class="pitem" onclick="tp(this)">
+            <div class="pchk">&#10003;</div>Emergency contact list
+          </div>
+          <div class="pitem" onclick="tp(this)">
+            <div class="pchk">&#10003;</div>FastTag active + balance
+          </div>
+        </div>
+        <div class="pcat">
+          <div class="pctit">&#128268; Electronics</div>
+          <div class="pitem" onclick="tp(this)">
+            <div class="pchk">&#10003;</div>Power bank 20,000 mAh
+          </div>
+          <div class="pitem" onclick="tp(this)">
+            <div class="pchk">&#10003;</div>Bluetooth speaker
+          </div>
+          <div class="pitem" onclick="tp(this)">
+            <div class="pchk">&#10003;</div>All charging cables
+          </div>
+          <div class="pitem" onclick="tp(this)">
+            <div class="pchk">&#10003;</div>Multi-plug extension
+          </div>
+          <div class="pitem" onclick="tp(this)">
+            <div class="pchk">&#10003;</div>Camera / GoPro
+          </div>
+          <div class="pitem" onclick="tp(this)">
+            <div class="pchk">&#10003;</div>Extra memory card
+          </div>
+        </div>
+        <div class="pcat">
+          <div class="pctit">&#128138; Medical Kit</div>
+          <div class="pitem" onclick="tp(this)">
+            <div class="pchk">&#10003;</div>ORS / electrolyte sachets
+          </div>
+          <div class="pitem" onclick="tp(this)">
+            <div class="pchk">&#10003;</div>Motion sickness tablets
+          </div>
+          <div class="pitem" onclick="tp(this)">
+            <div class="pchk">&#10003;</div>Paracetamol + Antacid
+          </div>
+          <div class="pitem" onclick="tp(this)">
+            <div class="pchk">&#10003;</div>Band-aids + antiseptic
+          </div>
+          <div class="pitem" onclick="tp(this)">
+            <div class="pchk">&#10003;</div>Personal medications
+          </div>
+          <div class="pitem" onclick="tp(this)">
+            <div class="pchk">&#10003;</div>Diarrhea tablets
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TIPS -->
+    <div id="tab-tips" class="section">
+      <div class="sec-title">Tips + Safety</div>
+      <p class="sec-desc">Read these before you leave. Especially the ghat and beach ones.</p>
+      <div class="tgrid">
+        <div class="tcard">
+          <div class="ticon">&#9968;</div>
+          <div class="ttit">Ghat Roads — Munnar</div>
+          <div class="titem"><span class="tdot"></span>Drive in 2nd gear on steep descents — engine braking, no constant
+            braking</div>
+          <div class="titem"><span class="tdot"></span>Honk at every blind hairpin bend before you turn</div>
+          <div class="titem"><span class="tdot"></span>Never halt mid-road for photos — pull over at a viewpoint</div>
+          <div class="titem"><span class="tdot"></span>Fog is heavy in the morning — slow down, keep headlights on</div>
+          <div class="titem"><span class="tdot"></span>Keep 15m gap between both cars on ghat bends</div>
+        </div>
+        <div class="tcard">
+          <div class="ticon">&#127754;</div>
+          <div class="ttit">Beach Safety — Varkala</div>
+          <div class="titem"><span class="tdot"></span>Varkala cliff base has strong undercurrents — do not swim there
+          </div>
+          <div class="titem"><span class="tdot"></span>Swim only in the marked lifeguard zones near the beach</div>
+          <div class="titem"><span class="tdot"></span>No swimming after sunset — zero visibility and rising current
+          </div>
+          <div class="titem"><span class="tdot"></span>Lock valuables in car or locker before entering the sea</div>
+          <div class="titem"><span class="tdot"></span>If caught in a rip current — swim parallel to shore, not against
+            it</div>
+        </div>
+        <div class="tcard">
+          <div class="ticon">&#127762;</div>
+          <div class="ttit">Night Driving</div>
+          <div class="titem"><span class="tdot"></span>Rotate drivers strictly every 2–2.5 hours</div>
+          <div class="titem"><span class="tdot"></span>No highway driving above 80 kmph at night</div>
+          <div class="titem"><span class="tdot"></span>Keep both cars in convoy — never let one car go too far ahead
+          </div>
+          <div class="titem"><span class="tdot"></span>Set WhatsApp group for real-time car coordination</div>
+          <div class="titem"><span class="tdot"></span>Stop every 2 hours — even if driver says they're fine</div>
+        </div>
+        <div class="tcard">
+          <div class="ticon">&#128176;</div>
+          <div class="ttit">Budget Control</div>
+          <div class="titem"><span class="tdot"></span>Collect all money before departure — don't chase mid-trip</div>
+          <div class="titem"><span class="tdot"></span>Avoid mocktails and desserts at cliff cafes — adds up fast</div>
+          <div class="titem"><span class="tdot"></span>Barter at cliff shops — start at 40% of asking price</div>
+          <div class="titem"><span class="tdot"></span>Eat Kerala thalis for lunch — best value per rupee</div>
+          <div class="titem"><span class="tdot"></span>One person manages daily cash — avoids confusion</div>
+        </div>
+        <div class="tcard">
+          <div class="ticon">&#128101;</div>
+          <div class="ttit">Group of 10 Tips</div>
+          <div class="titem"><span class="tdot"></span>Designate 1 captain per car — final call in any dispute</div>
+          <div class="titem"><span class="tdot"></span>Set hard departure times — 10 people ready takes 25 mins longer
+            than planned</div>
+          <div class="titem"><span class="tdot"></span>Pre-assign who sits where — avoid the morning chaos</div>
+          <div class="titem"><span class="tdot"></span>Bathroom rotation roster at homestays — 10 people 1 bathroom is
+            chaos without it</div>
+          <div class="titem"><span class="tdot"></span>Shared photo album (Google Photos) — everyone adds from day one
+          </div>
+        </div>
+        <div class="tcard">
+          <div class="ticon">&#128663;</div>
+          <div class="ttit">Varkala Parking</div>
+          <div class="titem"><span class="tdot"></span>Cliff area has very limited parking — arrive before 6 PM or park
+            near helipad</div>
+          <div class="titem"><span class="tdot"></span>Paid parking ₹50–100/day near cliff staircase entrance</div>
+          <div class="titem"><span class="tdot"></span>Better option: Leave cars at stay and rent bikes for local
+            movement</div>
+          <div class="titem"><span class="tdot"></span>Autos from helipad to cliff cost ₹50–80 for a group</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EXPENSE -->
+    <div id="tab-expense" class="section">
+      <div class="sec-title">Group Expense Plan</div>
+      <p class="sec-desc">10 people, money chaos avoided with one simple system.</p>
+      <div class="egrid">
+        <div class="ecard">
+          <div class="etit">Before Leaving Bangalore</div>
+          <div class="eitem"><span class="ebul">&rarr;</span>Collect ₹5,500 from each person. Keep ₹500/person in
+            emergency buffer = ₹5,000 common pool.</div>
+          <div class="eitem"><span class="ebul">&rarr;</span>One Finance Head holds the pool cash + makes big payments
+            (fuel, stay).</div>
+          <div class="eitem"><span class="ebul">&rarr;</span>Create Splitwise group "Kerala May 26" — add all 10
+            members.</div>
+          <div class="eitem"><span class="ebul">&rarr;</span>Every single expense gets logged in Splitwise immediately
+            after payment — no "I'll add it later".</div>
+        </div>
+        <div class="ecard">
+          <div class="etit">Fuel Split (Fair Method)</div>
+          <div class="eitem"><span class="ebul">&rarr;</span>Keep ALL fuel receipts for both cars throughout the trip.
+          </div>
+          <div class="eitem"><span class="ebul">&rarr;</span>At end of trip, add all fuel bills from both cars together.
+          </div>
+          <div class="eitem"><span class="ebul">&rarr;</span>Divide total equally by 10. Everyone pays same amount.
+          </div>
+          <div class="eitem"><span class="ebul">&rarr;</span>This kills "I sat in car 2 more" arguments completely.
+          </div>
+        </div>
+        <div class="ecard">
+          <div class="etit">Assign Roles</div>
+          <div class="eitem"><span class="ebul">&#11088;</span>Trip Captain — pre-books stays, makes plan decisions,
+            coordinates departure times.</div>
+          <div class="eitem"><span class="ebul">&#11088;</span>Finance Head — holds cash pool, logs Splitwise, settles
+            at end.</div>
+          <div class="eitem"><span class="ebul">&#11088;</span>Drivers (2) — focus only on driving, others handle
+            navigation.</div>
+          <div class="eitem"><span class="ebul">&#11088;</span>Photographer — manages shared album, cloud backup every
+            night.</div>
+        </div>
+        <div class="ecard">
+          <div class="etit">Essential Apps</div>
+          <div class="arow">
+            <div class="achip"><span class="app-emoji">&#128202;</span>Splitwise</div>
+            <div class="achip"><span class="app-emoji">&#128506;</span>Google Maps (offline)</div>
+            <div class="achip"><span class="app-emoji">&#128663;</span>FastTag</div>
+            <div class="achip"><span class="app-emoji">&#128172;</span>WhatsApp Group</div>
+            <div class="achip"><span class="app-emoji">&#128247;</span>Google Photos</div>
+            <div class="achip"><span class="app-emoji">&#127780;</span>Weather App</div>
+          </div>
+          <div class="bnbox" style="margin-top:12px">Final settlement: At end of trip, Splitwise shows exactly who owes
+            who. Settle on the spot via UPI before everyone disperses.</div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end main -->
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <p>Developed by Edwin with ❤️ for <strong>10 friends</strong> doing something they'll never forget
+      &nbsp;&middot;&nbsp; May 2025</p>
+    <p style="margin-top:6px;font-size:12px">Kozhikode &middot; Thrissur &middot; Munnar &middot; Kollam &middot;
+      Varkala</p>
+  </div>
+
+  <script>
+    /* TAB SWITCH */
+    function switchTab(id, btn) {
+      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+      document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+      document.getElementById('tab-' + id).classList.add('active');
+      btn.classList.add('active');
+      window.scrollTo({ top: document.querySelector('.nav-wrap').offsetTop, behavior: 'smooth' });
+      if (id === 'packing') upc();
+    }
+
+    /* PACKING */
+    function tp(el) { el.classList.toggle('ck'); upc(); }
+    function upc() {
+      const tot = document.querySelectorAll('.pitem').length;
+      const ck = document.querySelectorAll('.pitem.ck').length;
+      const el = document.getElementById('pctr');
+      if (el) el.innerHTML = `<strong>${ck}</strong> of ${tot} items packed${ck === tot ? ' — You\'re ready! 🎉' : ''}`;
+    }
+    upc();
+
+    /* PARALLAX */
+    const himg = document.getElementById('himg');
+    const hero = document.getElementById('hero');
+    hero.addEventListener('mousemove', function (e) {
+      const r = this.getBoundingClientRect();
+      const dx = (e.clientX - r.left - r.width / 2) / (r.width / 2);
+      const dy = (e.clientY - r.top - r.height / 2) / (r.height / 2);
+      himg.style.transform = `scale(1.1) translate(${dx * -14}px,${dy * -9}px)`;
+    });
+    hero.addEventListener('mouseleave', function () {
+      himg.style.transition = 'transform 1.2s ease';
+      himg.style.transform = 'scale(1.08) translate(0,0)';
+      setTimeout(() => himg.style.transition = 'transform 0.08s linear', 1200);
+    });
+
+    /* WAVE ANIMATION */
+    (function () {
+      const w1 = document.getElementById('wv1'), w2 = document.getElementById('wv2');
+      let t = 0;
+      (function loop() {
+        t += 0.012;
+        const a = Math.sin(t) * 20, b = Math.cos(t * 0.65) * 15, c = Math.sin(t * 1.3) * 10;
+        w1.setAttribute('d', `M0,${50 + a} C240,${88 - a} 480,${12 + b} 720,${50 + a} C960,${88 - a} 1200,${12 + b} 1440,${50 + c} L1440,100 L0,100 Z`);
+        w2.setAttribute('d', `M0,${68 - b} C200,${32 + a} 460,${80 - a} 720,${58 + b} C980,${36 - b} 1240,${74 + c} 1440,${58 - a} L1440,100 L0,100 Z`);
+        requestAnimationFrame(loop);
+      })();
+    })();
+
+    /* PARTICLES */
+    (function () {
+      const cv = document.getElementById('ptcl'), ctx = cv.getContext('2d');
+      let W, H, pts = [];
+      function rsz() { W = cv.width = cv.offsetWidth; H = cv.height = cv.offsetHeight; }
+      rsz(); window.addEventListener('resize', rsz);
+      function mk() { return { x: Math.random() * W, y: Math.random() * H, r: Math.random() * 1.6 + 0.2, vx: (Math.random() - .5) * .35, vy: -(Math.random() * .25 + .05), a: Math.random() * .55 + .1, lf: Math.random() * 220 + 80, age: 0 }; }
+      for (let i = 0; i < 90; i++)pts.push(mk());
+      (function draw() {
+        ctx.clearRect(0, 0, W, H);
+        pts.forEach((p, i) => {
+          p.age++;
+          const fade = Math.min(p.age / 25, 1) * Math.max(1 - (p.age - p.lf + 25) / 25, 0);
+          ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(255,255,255,${p.a * fade})`; ctx.fill();
+          p.x += p.vx; p.y += p.vy;
+          if (p.age > p.lf) pts[i] = mk();
+        });
+        requestAnimationFrame(draw);
+      })();
+    })();
+
+    /* COUNT-UP */
+    (function () {
+      const cfgs = [{ id: 's0', val: 3, pre: '' }, { id: 's1', val: 1200, pre: '~' }, { id: 's3', val: 6, pre: '' }];
+      setTimeout(() => {
+        cfgs.forEach(c => {
+          const el = document.getElementById(c.id); if (!el) return;
+          let cur = 0; const step = Math.ceil(c.val / 40);
+          const t = setInterval(() => { cur = Math.min(cur + step, c.val); el.textContent = c.pre + cur; if (cur >= c.val) clearInterval(t); }, 28);
+        });
+      }, 1300);
+    })();
+  </script>
+</body>
+
+</html>
